@@ -1,10 +1,12 @@
 package com.seclib.musk.compat;
 
+import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.os.Build;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.CheckBox;
+
 import com.seclib.musk.SecureService;
 import com.seclib.musk.Utils;
 import java.util.List;
@@ -27,7 +29,7 @@ public class Huawei {
             cancelSystemManagerUninstallList(event,context);
         }
     }
-    private static boolean isMe(){
+    public static boolean isMe(){
         return Build.BRAND.equalsIgnoreCase("huawei")||Build.BRAND.equalsIgnoreCase("honor");
     }
 
@@ -43,7 +45,7 @@ public class Huawei {
             if(text!=null){
                 if(text.contains("卸载") && text.contains(Utils.getAppName(context))){
                     //正在卸载我的应用
-                    ((SecureService)context).performGlobalAction(SecureService.GLOBAL_ACTION_BACK);
+                    ((SecureService)context).performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
                 }
             }
         }

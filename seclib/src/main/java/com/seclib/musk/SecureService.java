@@ -5,26 +5,20 @@ import android.view.accessibility.AccessibilityEvent;
 import com.seclib.musk.compat.Huawei;
 
 /**
- * Created by musk on 17/12/13.
- * 辅助服务
+ * Created by musk on 18/1/4.
  */
 
 public class SecureService extends AccessibilityService {
-
-    private final String TAG=SecureService.class.getSimpleName();
-
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        if(null!=event.getSource()) {
-            Debugger.i(TAG+"==SecureService应用=="+event.getPackageName());
+        if (null != event.getSource()) {
             EventHandler.dealEvent(getRootInActiveWindow(),this);
-
             Huawei.cancelUninstallFromSysManager(event,this);
         }
     }
 
     @Override
     public void onInterrupt() {
-        //ignore
+        //
     }
 }

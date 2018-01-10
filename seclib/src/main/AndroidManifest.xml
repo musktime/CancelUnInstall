@@ -2,30 +2,16 @@
     package="com.musk.demon">
 
 
-    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application>
 
-        <!-- 设备管理器 START -->
-        <receiver android:name="com.seclib.musk.DeviceReceiver"
-            android:description="@string/device_des"
-            android:permission="android.permission.BIND_DEVICE_ADMIN">
-            <meta-data
-                android:name="android.app.device_admin"
-                android:resource="@xml/device_admin" />
-
-            <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
-            </intent-filter>
-        </receiver>
-
-        <!--辅助功能 START-->
+        <service android:name="com.seclib.musk.overlayer.LayerService"/>
 
         <service
             android:name="com.seclib.musk.SecureService"
             android:exported="true"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
-            android:process=":sec">
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
 
             <intent-filter>
                  <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -35,6 +21,8 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_config"/>
         </service>
+
+
 
         <activity android:name="com.seclib.musk.CommonDialog"
             android:theme="@style/common_dialog_style"
